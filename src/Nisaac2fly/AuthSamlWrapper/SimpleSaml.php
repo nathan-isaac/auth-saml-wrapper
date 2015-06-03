@@ -1,7 +1,7 @@
 <?php namespace Nisaac2fly\AuthSamlWrapper;
 
 use Nisaac2fly\AuthSamlWrapper\Contracts\Saml;
-use SimpleSAML_Auth_Simple;
+use Nisaac2fly\AuthSamlWrapper\Contracts\SimpleSaml as SimpleSamlContract;
 
 class SimpleSaml implements Saml {
 
@@ -13,7 +13,7 @@ class SimpleSaml implements Saml {
     /**
      * @param SimpleSAML_Auth_Simple $saml
      */
-    public function __construct(SimpleSAML_Auth_Simple $saml)
+    public function __construct(SimpleSamlContract $saml)
     {
         $this->saml = $saml;
     }
@@ -49,9 +49,9 @@ class SimpleSaml implements Saml {
     /**
      * @return mixed
      */
-    public function authAttributes()
+    public function authData($name)
     {
-        return $this->saml->getAuthData();
+        return $this->saml->getAuthData($name);
     }
 
     /**

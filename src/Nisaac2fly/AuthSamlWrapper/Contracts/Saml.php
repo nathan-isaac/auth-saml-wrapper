@@ -22,9 +22,11 @@ interface Saml {
     public function attributes();
 
     /**
+     * @param string $name
+     *
      * @return array|null
      */
-    public function authAttributes();
+    public function authData($name);
 
     /**
      * Require user to be logged in before continuing.
