@@ -4,6 +4,7 @@ use App\User;
 use Exception;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
+use SimpleSAML_Auth_Simple;
 
 class AuthSamlWrapperServiceProvider extends ServiceProvider {
 
@@ -62,7 +63,7 @@ class AuthSamlWrapperServiceProvider extends ServiceProvider {
 
         $this->app->singleton('Nisaac2fly\AuthSamlWrapper\Contracts\SimpleSaml', function ()
         {
-            return new \SimpleSAML_Auth_Simple(config('saml.simplesaml.source'));;
+            return new SimpleSAML_Auth_Simple(config('saml.simplesaml.source'));;
         });
 
         $this->app->singleton('Nisaac2fly\AuthSamlWrapper\Contracts\Saml', function()
