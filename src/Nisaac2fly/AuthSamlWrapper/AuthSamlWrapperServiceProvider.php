@@ -67,7 +67,7 @@ class AuthSamlWrapperServiceProvider extends ServiceProvider {
 
         $this->app->singleton('Nisaac2fly\AuthSamlWrapper\Contracts\Saml', function()
         {
-            return new SimpleSaml($this->app['SimpleSAML_Auth_Simple']);
+            return new SimpleSaml($this->app['Nisaac2fly\AuthSamlWrapper\Contracts\SimpleSaml']);
         });
 
         $this->app->singleton('App\User', function ()
