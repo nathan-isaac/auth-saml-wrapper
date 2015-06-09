@@ -6,7 +6,7 @@ This package is currently under development...
 
 ## How to install in a non-laravel project
 
-```
+```php
 use Nisaac2fly/AuthSamlWrapper/SimpleSamlServiceProvider;
 
 $path = __DIR__ . '/../path/to/saml/lib/_autoload.php';
