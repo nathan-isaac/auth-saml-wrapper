@@ -4,7 +4,7 @@
 
 This package is currently under development...
 
-## How to install in a non-laravel project
+## Non-Laravel Usage
 
 ```php
 use Nisaac2fly\AuthSamlWrapper\SimpleSamlServiceProvider;
@@ -18,4 +18,35 @@ $auth = new SimpleSamlServiceProvider($path, $source);
 $auth->register();
 
 $saml = $auth->saml();
+
+```
+
+## Laravel Usage
+
+More to come...
+
+```php
+// app/config/app.php
+'providers' => [
+    '...',
+    'Nisaac2fly\AuthSamlWrapper\AuthSamlWrapperServiceProvider'
+];
+```
+
+## Attribute Sanitizer
+
+```php
+$sanitizer = new AttributeSanitizer($saml->attributes());
+
+$sanitizer->setDates([
+    'whencreated' => 'zulu',
+    'lastlogon' => '18bit',
+]);
+
+$sanitizer->seTypes([
+    'email' => 'string',
+    'groups' => 'array'
+]);
+
+$attributes = $sanitizer->make();
 ```
