@@ -26,7 +26,7 @@ $saml = $auth->saml();
 More to come...
 
 ```php
-// app/config/app.php
+// config/app.php
 'providers' => [
     '...',
     'Nisaac2fly\AuthSamlWrapper\AuthSamlWrapperServiceProvider'
@@ -36,6 +36,8 @@ More to come...
 ## Attribute Sanitizer
 
 ```php
+use Nisaac2fly\AuthSamlWrapper\Helpers\AttributeSanitizer;
+
 $sanitizer = new AttributeSanitizer($saml->attributes());
 
 $sanitizer->setDates([
