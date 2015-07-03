@@ -1,4 +1,4 @@
-<?php namespace Nisaac2fly\AuthSamlWrapper;
+<?php namespace Nisaac2fly\AuthSamlWrapper\laravel;
 
 use Illuminate\Support\Facades\Facade;
 

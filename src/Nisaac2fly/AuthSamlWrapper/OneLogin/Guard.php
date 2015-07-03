@@ -1,21 +1,8 @@
-<?php namespace Nisaac2fly\AuthSamlWrapper;
+<?php namespace Nisaac2fly\AuthSamlWrapper\OneLogin;
 
-use App\Services\Auth\Contracts\Saml;
+use Nisaac2fly\AuthSamlWrapper\Contracts\Saml;
 
-class OneLogin implements Saml {
-
-    /**
-     * @var
-     */
-    protected $saml;
-
-    /**
-     * @param $saml
-     */
-    public function __construct($saml)
-    {
-        $this->saml = $saml;
-    }
+class Guard implements Saml {
 
     /**
      * Determine if the current user is authenticated.
@@ -34,7 +21,7 @@ class OneLogin implements Saml {
      */
     public function guest()
     {
-        return ! $this->check();
+        // TODO: Implement guest() method.
     }
 
     /**
@@ -46,11 +33,13 @@ class OneLogin implements Saml {
     }
 
     /**
+     * @param string $name
+     *
      * @return array|null
      */
-    public function authAttributes()
+    public function authData($name)
     {
-        // TODO: Implement authAttributes() method.
+        // TODO: Implement authData() method.
     }
 
     /**

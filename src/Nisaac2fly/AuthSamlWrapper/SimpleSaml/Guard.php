@@ -1,9 +1,11 @@
-<?php namespace Nisaac2fly\AuthSamlWrapper;
+<?php
+
+namespace Nisaac2fly\AuthSamlWrapper\SimpleSaml;
 
 use Nisaac2fly\AuthSamlWrapper\Contracts\Saml;
-use Nisaac2fly\AuthSamlWrapper\Contracts\SimpleSaml as SimpleSamlContract;
+use SimpleSAML_Auth_Simple;
 
-class SimpleSaml implements Saml {
+class Guard implements Saml {
 
     /**
      * @var SimpleSAML_Auth_Simple
@@ -13,7 +15,7 @@ class SimpleSaml implements Saml {
     /**
      * @param SimpleSAML_Auth_Simple $saml
      */
-    public function __construct(SimpleSamlContract $saml)
+    public function __construct(SimpleSAML_Auth_Simple $saml)
     {
         $this->saml = $saml;
     }

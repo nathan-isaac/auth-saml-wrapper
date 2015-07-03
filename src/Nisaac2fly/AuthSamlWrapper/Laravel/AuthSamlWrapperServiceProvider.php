@@ -1,9 +1,9 @@
-<?php namespace Nisaac2fly\AuthSamlWrapper;
+<?php namespace Nisaac2fly\AuthSamlWrapper\Laravel;
 
-use App\User;
 use Exception;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
+use Nisaac2fly\AuthSamlWrapper\SimpleSaml\Guard;
 use SimpleSAML_Auth_Simple;
 
 class AuthSamlWrapperServiceProvider extends ServiceProvider {
@@ -15,6 +15,9 @@ class AuthSamlWrapperServiceProvider extends ServiceProvider {
 	 */
 	protected $defer = false;
 
+    /**
+     *
+     */
     public function boot()
     {
         $this->publishes([
@@ -23,7 +26,7 @@ class AuthSamlWrapperServiceProvider extends ServiceProvider {
 
         AliasLoader::getInstance()->alias(
             'Saml',
-            'Nisaac2fly\AuthSamlWrapper\SamlFacade'
+            'Nisaac2fly\AuthSamlWrapper\Laravel\SamlFacade'
         );
     }
 
@@ -50,6 +53,11 @@ class AuthSamlWrapperServiceProvider extends ServiceProvider {
 		return [];
 	}
 
+    /**
+     * Register SimpleSAMLphp
+     *
+     * @throws Exception
+     */
     private function registerSimpleSaml()
     {
         $autoload = base_path(config('saml.simplesaml.autoload'));
@@ -61,19 +69,9 @@ class AuthSamlWrapperServiceProvider extends ServiceProvider {
 
         require_once $autoload;
 
-        $this->app->singleton('Nisaac2fly\AuthSamlWrapper\Contracts\SimpleSaml', function ()
-        {
-            return new SimpleSAML_Auth_Simple(config('saml.simplesaml.source'));
-        });
-
         $this->app->singleton('Nisaac2fly\AuthSamlWrapper\Contracts\Saml', function()
         {
-            return new SimpleSaml($this->app['Nisaac2fly\AuthSamlWrapper\Contracts\SimpleSaml']);
-        });
-
-        $this->app->singleton('App\User', function ()
-        {
-            return new User((array) $this->app['Nisaac2fly\AuthSamlWrapper\Contracts\Saml']->attributes());
+            return new Guard(new SimpleSAML_Auth_Simple(config('saml.simplesaml.source')));
         });
     }
 

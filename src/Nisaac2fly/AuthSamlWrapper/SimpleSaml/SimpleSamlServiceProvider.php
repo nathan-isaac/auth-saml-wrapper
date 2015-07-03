@@ -1,6 +1,7 @@
-<?php namespace Nisaac2fly\AuthSamlWrapper;
+<?php namespace Nisaac2fly\AuthSamlWrapper\SimpleSaml;
 
 use Exception;
+use SimpleSAML_Auth_Simple;
 
 class SimpleSamlServiceProvider {
 
@@ -46,9 +47,9 @@ class SimpleSamlServiceProvider {
 
         require_once $this->autoload;
 
-        $auth = new SimpleSamlAuth($this->source);
+        $auth = new SimpleSAML_Auth_Simple($this->source);
 
-        $this->saml = new SimpleSaml($auth);
+        $this->saml = new Guard($auth);
     }
 
     /**
