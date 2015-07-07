@@ -61,10 +61,6 @@ class Attributes {
      */
     public function __get($key)
     {
-        if ($this->has($key)) {
-            return $this->get($key);
-        }
-
-        throw new Exception("The {$key} attribute does not exist.");
+        return $this->get($key);
     }
 }
