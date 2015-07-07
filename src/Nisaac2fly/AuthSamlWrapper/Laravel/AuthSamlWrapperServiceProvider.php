@@ -50,7 +50,7 @@ class AuthSamlWrapperServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return [];
+		return ['Nisaac2fly\AuthSamlWrapper\Contracts\Saml'];
 	}
 
     /**
